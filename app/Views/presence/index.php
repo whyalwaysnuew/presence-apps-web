@@ -80,7 +80,7 @@
                                         </span>
                                     </button>
                                 </div>
-                                <input type="text" name="" id="coords" class="form-control" value>
+                                <!-- <input type="text" name="" id="coords" class="form-control" value> -->
                             </div>
     
                             <div class="col-12">

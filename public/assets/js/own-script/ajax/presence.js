@@ -32,7 +32,7 @@ function showPosition(position) {
       {
         Swal.fire("Success!", "Your Location has been tracked.", "success");
         $('#location').val(result.place);
-        $('#coords').val(result.latlng);
+        // $('#coords').val(result.latlng);
       } else {
         Swal.fire('Failed!', "An error occured when tracking your location.", 'error');
       }
