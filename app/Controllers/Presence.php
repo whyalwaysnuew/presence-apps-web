@@ -77,7 +77,8 @@ class Presence extends BaseController
 
         $data = [
             'response' => 200,
-            'place' => $result['results'][0]['formatted']
+            'place' => $result['results'][0]['formatted'],
+            'latlng' => 'Latitude: ' . $latitude . ' - Longitude:' . $longitude 
         ];
 
         echo json_encode($data);
