@@ -34,6 +34,11 @@ class CreateTableUsers extends Migration
                 'constraint' => 100,
             ],
 
+            'division' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+            ],
+
             'address' => [
                 'type' => 'VARCHAR',
                 'constraint' =>  255,

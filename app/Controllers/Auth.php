@@ -20,9 +20,12 @@ class Auth extends BaseController
         if(session()->get('user_id')){
             return redirect()->to(base_url('/'));
         }
+
+
         $data = [
             'title' => 'Auth | PT SILICAINDO',
             'ajax' => 'auth',
+            'divisions' => $this->auth->getDivision()
         ];
 
         return view('auth/index', $data);
@@ -32,16 +35,27 @@ class Auth extends BaseController
     {
         $data = $this->request->getPost();
 
-        $user = $this->auth->where('username', $data['username'])->first();
+        // $user = $this->auth->where('username', $data['username'])->first();
+        $user = $this->auth->getDataUser($data['username']);
 
-        if($user && password_verify($data['password'], $user['password']))
+        if($user && password_verify($data['password'], $user->password))
         {
+            // $userData = [
+            //     'user_id' => $user['user_id'],
+            //     'username' => $user['username'],
+            //     'level' => $user['level'],
+            //     'fullname' => $user['fullname'],
+            //     'status' => $user['status'],
+            // ];
+
             $userData = [
-                'user_id' => $user['user_id'],
-                'username' => $user['username'],
-                'level' => $user['level'],
-                'fullname' => $user['fullname'],
-                'status' => $user['status']
+                'user_id' => $user->user_id,
+                'username' => $user->username,
+                'level' => $user->level,
+                'fullname' => $user->fullname,
+                'status' => $user->status,
+                'division' => $user->division,
+                'division_name' => $user->division_name
             ];
 
             session()->set($userData);
@@ -88,6 +102,7 @@ class Auth extends BaseController
                             'password' => password_hash($data['password'], PASSWORD_BCRYPT),
                             'fullname' => $data['fullname'],
                             'email' => $data['email'],
+                            'division' => $data['division'],
                             'level' => 'USER',
                             'status' => 0,
                         ];

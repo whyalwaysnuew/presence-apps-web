@@ -38,6 +38,11 @@ class CreateTablePresence extends Migration
                 'constraint' => 255
             ],
 
+            'division' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+            ],
+
             'created_by' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100

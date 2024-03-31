@@ -23,3 +23,11 @@ $routes->post('presence/uploadFile', 'Presence::uploadFile');
 $routes->post('presence/removeFile', 'Presence::removeFile');
 $routes->post('presence/store', 'Presence::store');
 $routes->get('presence/history', 'Presence::history');
+
+
+$routes->get('division', 'Division::index');
+$routes->get('division/create', 'Division::create');
+$routes->post('division/store', 'Division::store');
+$routes->get('division/edit', 'Division::edit');
+$routes->post('division/update', 'Division::update');
+$routes->get('division/delete', 'Division::delete');

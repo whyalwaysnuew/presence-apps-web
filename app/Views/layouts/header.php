@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="/favicon.ico">
 
+	<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css"/>
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
     <link href="<?= base_url('') ?>/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('') ?>/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
@@ -54,7 +55,7 @@
 								<!--end::Aside  toggle-->
 								<!--begin::Logo-->
 								<a>
-									<img alt="Logo" src="<?= base_url('') ?>/assets/img/logo_ckl/logo_ckl_long_bw.png" class="h-25px h-lg-30px" />
+									<!-- <img alt="Logo" src="<?= base_url('') ?>/assets/" class="h-25px h-lg-30px" /> -->
 								</a>
 								<!--end::Logo-->
 							</div>
@@ -91,6 +92,7 @@
 												<!--begin::Username-->
 												<div class="d-flex flex-column">
 													<div class="fw-bold d-flex align-items-center fs-5"><?= session()->get('fullname'); ?></div>
+													<span class="fs-6"><?= session()->get('division'); ?></span>
 												</div>
 												<!--end::Username-->
 											</div>
@@ -158,6 +160,7 @@
 										</div>
 										<!--end:Menu item-->
 
+										<?php if(session()->get('level') == 'USER') {?>
                                         <!--begin:Menu item-->
 										<div class="menu-item">
 											<a class="menu-link text-hover-primary <?= (@$menu == 'Presence' ? 'active' : '') ?>" href="<?= base_url('presence'); ?>">
@@ -191,6 +194,57 @@
 											</a>
 										</div>
 										<!--end:Menu item-->
+										<?php } ?>
+
+										<?php if(@session()->get('level') == 'ADMIN') { ?>
+										<!--begin:Menu item-->
+                                        <div class="menu-item pt-5">
+                                            <!--begin:Menu content-->
+                                            <div class="menu-content">
+                                                <span class="menu-heading fw-bold text-uppercase fs-7">Master Data</span>
+                                            </div>
+                                            <!--end:Menu content-->
+                                        </div>
+                                        <!--end:Menu item-->
+
+                                        <!--begin:Menu item-->
+										<div class="menu-item">
+											<a class="menu-link text-hover-primary <?= (@$menu == 'Division' ? 'active' : '') ?>" href="<?= base_url('division'); ?>">
+												<span class="menu-icon">
+													<!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
+													<span class="svg-icon svg-icon-2">
+														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<path d="M20 19.725V18.725C20 18.125 19.6 17.725 19 17.725H5C4.4 17.725 4 18.125 4 18.725V19.725H3C2.4 19.725 2 20.125 2 20.725V21.725H22V20.725C22 20.125 21.6 19.725 21 19.725H20Z" fill="currentColor"/>
+															<path opacity="0.3" d="M22 6.725V7.725C22 8.325 21.6 8.725 21 8.725H18C18.6 8.725 19 9.125 19 9.725C19 10.325 18.6 10.725 18 10.725V15.725C18.6 15.725 19 16.125 19 16.725V17.725H15V16.725C15 16.125 15.4 15.725 16 15.725V10.725C15.4 10.725 15 10.325 15 9.725C15 9.125 15.4 8.725 16 8.725H13C13.6 8.725 14 9.125 14 9.725C14 10.325 13.6 10.725 13 10.725V15.725C13.6 15.725 14 16.125 14 16.725V17.725H10V16.725C10 16.125 10.4 15.725 11 15.725V10.725C10.4 10.725 10 10.325 10 9.725C10 9.125 10.4 8.725 11 8.725H8C8.6 8.725 9 9.125 9 9.725C9 10.325 8.6 10.725 8 10.725V15.725C8.6 15.725 9 16.125 9 16.725V17.725H5V16.725C5 16.125 5.4 15.725 6 15.725V10.725C5.4 10.725 5 10.325 5 9.725C5 9.125 5.4 8.725 6 8.725H3C2.4 8.725 2 8.325 2 7.725V6.725L11 2.225C11.6 1.925 12.4 1.925 13.1 2.225L22 6.725ZM12 3.725C11.2 3.725 10.5 4.425 10.5 5.225C10.5 6.025 11.2 6.725 12 6.725C12.8 6.725 13.5 6.025 13.5 5.225C13.5 4.425 12.8 3.725 12 3.725Z" fill="currentColor"/>
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</span>
+												<span class="menu-title fw-bold">Division</span>
+											</a>
+										</div>
+										<!--end:Menu item-->
+
+                                        <!--begin:Menu item-->
+										<div class="menu-item">
+											<a class="menu-link text-hover-primary <?= (@$menu == 'User' ? 'active' : '') ?>" href="<?= base_url('user'); ?>">
+												<span class="menu-icon">
+													<!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
+													<span class="svg-icon svg-icon-2">
+														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<path d="M16.0173 9H15.3945C14.2833 9 13.263 9.61425 12.7431 10.5963L12.154 11.7091C12.0645 11.8781 12.1072 12.0868 12.2559 12.2071L12.6402 12.5183C13.2631 13.0225 13.7556 13.6691 14.0764 14.4035L14.2321 14.7601C14.2957 14.9058 14.4396 15 14.5987 15H18.6747C19.7297 15 20.4057 13.8774 19.912 12.945L18.6686 10.5963C18.1487 9.61425 17.1285 9 16.0173 9Z" fill="currentColor"/>
+															<rect opacity="0.3" x="14" y="4" width="4" height="4" rx="2" fill="currentColor"/>
+															<path d="M4.65486 14.8559C5.40389 13.1224 7.11161 12 9 12C10.8884 12 12.5961 13.1224 13.3451 14.8559L14.793 18.2067C15.3636 19.5271 14.3955 21 12.9571 21H5.04292C3.60453 21 2.63644 19.5271 3.20698 18.2067L4.65486 14.8559Z" fill="currentColor"/>
+															<rect opacity="0.3" x="6" y="5" width="6" height="6" rx="3" fill="currentColor"/>
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</span>
+												<span class="menu-title fw-bold">User</span>
+											</a>
+										</div>
+										<!--end:Menu item-->
+										<?php } ?>
 									</div>
 									<!--end::Menu-->
 								</div>

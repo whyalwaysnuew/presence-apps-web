@@ -148,6 +148,20 @@ License: For each use you must have a valid license purchased only from above li
                                             <!--end::Username-->
                                         </div>
                                         <!--end::Input group=-->
+                                        
+                                        <!--begin::Input group=-->
+                                        <div class="fv-row mb-8">
+                                            <!--begin::Division-->
+                                            <select class="form-select" name="division" id="division" data-control="select2" data-placeholder="Select Division">
+                                                <option></option>
+                                                <?php if(@$divisions) { ?>
+                                                    <?php foreach($divisions as $division) { ?>
+                                                        <option value="<?= $division->division_id; ?>"><?= $division->division_name; ?></option>
+                                                <?php } } ?>
+                                            </select>
+                                            <!--end::Division-->
+                                        </div>
+                                        <!--end::Input group=-->
 
                                         <!--begin::Input group=-->
                                         <div class="fv-row mb-8">

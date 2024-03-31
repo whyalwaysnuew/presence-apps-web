@@ -44,6 +44,7 @@
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Vendors Javascript(used for this page only)-->
 		<script src="<?= base_url('') ?>/assets/plugins/custom/fslightbox/fslightbox.bundle.js"></script>
+		<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 		<!--end::Vendors Javascript-->
 		<!--begin::Custom Javascript(used for this page only)-->
         <script>var base_url = '<?php echo base_url(); ?>';</script>

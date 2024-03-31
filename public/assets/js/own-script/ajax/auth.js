@@ -5,11 +5,12 @@ $('#buttonRegister').on('click', function (){
     let fullname = $('#fullname').val();
     let password = $('#passwordRegister').val();
     let password2 = $('#password_2').val();
+    let division = $('#division').val();
     var button = $('#buttonRegister');
 
     button.html('Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span>').attr('disabled', true);
 
-    if(username && email && fullname && password && password2){
+    if(username && email && fullname && password && password2 && division){
         $.ajax({
           url: base_url + "auth/register",
           method: "POST",

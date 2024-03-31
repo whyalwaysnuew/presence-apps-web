@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AuthModel extends Model
+class DivisionModel extends Model
 {
-    protected $table            = 'users';
-    protected $primaryKey       = 'user_id';
+    protected $table            = 'divisions';
+    protected $primaryKey       = 'division_id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
@@ -44,15 +44,15 @@ class AuthModel extends Model
     public function generateId()
     {
         $lastId = $this->db->table($this->table)
-            ->select('MAX(RIGHT(user_id, 11)) AS last_id')
+            ->select('MAX(RIGHT(division_id, 11)) AS last_id')
             ->get();
         $lastMidId = $this->db->table($this->table)
-            ->select('MAX(MID(user_id, 4, 6)) AS last_mid_id')
+            ->select('MAX(MID(division_id, 4, 6)) AS last_mid_id')
             ->get()
             ->getRow()
             ->last_mid_id;
         $midId = date('ymd');
-        $char = "USR" . $midId;
+        $char = "DIV" . $midId;
         if ($lastMidId == $midId) {
             $tmp = ($lastId->getRow()->last_id) + 1;
             $id = substr($tmp, -5);
@@ -62,44 +62,37 @@ class AuthModel extends Model
         return $char . $id;
     }
 
-    public function checkUsername($username)
+    public function store($value)
     {
-        return $this->db->table($this->table)
-                ->where('username', $username)
-                ->countAllResults() === 0;
-    }
-
-    public function checkEmail($email)
-    {
-        return $this->db->table($this->table)
-                ->where('email', $email)
-                ->countAllResults() === 0;
-    }
-
-    public function register($data)
-    {
-        $query = $this->db->table($this->table)
-                ->insert($data);
+        $query = $this->db->table($this->table)->insert($value);
 
         return $query;
     }
 
-    public function getDataUser($username)
+    public function updateData($id, $value)
     {
-        $query = $this->db->table($this->table)
-                ->select('users.*, divisions.division_name')
-                ->join('divisions', 'divisions.division_id = users.division', 'left')
-                ->where('username', $username)
-                ->get();
+        $this->db->table($this->table)
+                ->where($this->primaryKey, $id)
+                ->update($value);
+
+    }
+
+    public function getDivisionData()
+    {
+        $query = $this->db->table($this->table)->orderBy('division_name')->get();
+
+        return $query->getResult();
+    }
+
+    public function getDivisionById($id)
+    {
+        $query = $this->db->table($this->table)->where('division_id', $id)->get();
 
         return $query->getRow();
     }
 
-    public function getDivision()
+    public function deleteData($id)
     {
-        $query = $this->db->table('divisions')
-                ->get();
-        
-        return $query->getResult();
-    }    
+        $this->db->table($this->table)->where($this->primaryKey, $id)->delete();
+    }
 }
