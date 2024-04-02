@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 namespace App\Controllers;
@@ -24,3 +25,16 @@ class Home extends BaseController
         return view('home/index', $data);
     }
 }
+=======
+<?php
+
+namespace App\Controllers;
+
+class Home extends BaseController
+{
+    public function index(): string
+    {
+        return view('home/index');
+    }
+}
+>>>>>>> 2800c1c (test)
