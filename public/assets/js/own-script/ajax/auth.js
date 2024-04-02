@@ -10,7 +10,7 @@ $('#buttonRegister').on('click', function (){
 
     button.html('Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span>').attr('disabled', true);
 
-    if(username && email && fullname && password && password2 && division){
+    if(username && email && fullname && password && password2){
         $.ajax({
           url: base_url + "auth/register",
           method: "POST",

@@ -37,6 +37,7 @@ class CreateTableUsers extends Migration
             'division' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
+                'null' => true
             ],
 
             'address' => [
