@@ -15,7 +15,7 @@
 
             <!-- begin::Actions -->
             <div class="d-flex align-items-center gap-2">
-                
+                <a href="<?= base_url('presence/history'); ?>" class="btn btn-danger fw-bold">Back</a>
             </div>
             <!--end::Actions -->
 

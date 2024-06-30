@@ -74,4 +74,11 @@ class PresenceModel extends Model
 
         return $query->getResult();
     }
+
+    public function getPresenceHistory($id)
+    {
+        $query = $this->db->table($this->table)->where('created_by', $id)->get();
+
+        return $query->getResult();
+    }
 }

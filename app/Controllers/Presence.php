@@ -17,13 +17,27 @@ class Presence extends BaseController
 
     public function index()
     {
-        $data = [
-            'title' => 'Presence | PT SILICAINDO ',
-            'menu' => 'Presence',
-            'ajax' => 'presence'
-        ];
+        
+        if(session()->get('level') == 'USER'){
+            $data = [
+                'title' => 'Presence | PT SILICAINDO ',
+                'menu' => 'Presence',
+                'ajax' => 'presence'
+            ];
 
-        return view('presence/index', $data);
+            return view('presence/index', $data);
+        } else {
+            $presence = $this->presence->getPresenceData();
+
+            $data = [
+                'title' => 'Presence | PT SILICAINDO ',
+                'menu' => 'Presence',
+                'ajax' => 'presence',
+                'presences' => @$presence
+            ];
+
+            return view('presence/admin', $data);
+        }
     }
 
     public function store()
@@ -137,7 +151,7 @@ class Presence extends BaseController
 
     public function history()
     {
-        $presence = $this->presence->getPresenceData();
+        $presence = $this->presence->getPresenceHistory(session()->get('user_id'));
 
         $data = [
             'title' => 'Presence History | PT SILICAINDO',

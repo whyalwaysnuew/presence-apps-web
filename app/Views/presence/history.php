@@ -13,12 +13,6 @@
 			</div>
 			<!--end::Page title-->
 
-            <!-- begin::Actions -->
-            <div class="d-flex align-items-center gap-2">
-                <button type="button" class="btn btn-success fw-bold">Export</button>
-            </div>
-            <!--end::Actions -->
-
 		</div>
 		<!--end::Toolbar-->	
 
@@ -48,29 +42,35 @@
                             <tbody>
                                 <?php if(@$presence) {?>
                                     <?php foreach($presence as $no => $data) { ?>
-                                    <tr class="align-middle">
-                                        <td class="text-center fw-bold"><?= $no+1; ?></td>
-                                        <td>
-                                            <a href="<?= base_url('upload/presence/' . $data->created_by . '/' . $data->file) ?>" class="d-block overlay" data-fslightbox="lightbox-basic">
-                                                <img src="<?= base_url('upload/presence/'.$data->created_by . '/' . $data->file) ?>" alt="" class="w-50px">
-                                            </a>
-                                        </td>
-                                        <td><?= $data->name; ?></td>
-                                        <td class="text-center">
-                                            <?php if($data->remark == 'Check In') {?>    
-                                                <span class="badge badge-light-success">Check In</span>
-                                            <?php } else if ($data->remark == 'Check Out') {?>
-                                                <span class="badge badge-light-danger">Check Out</span>
-                                            <?php } else if($data->remark == 'Permit') {?>
-                                                <span class="badge badge-light-primary">Permit</span>
-                                            <?php }?>
-                                        </td>
-                                        <td><?= date('d F Y H:i', strtotime($data->presence_date)); ?></td>
-                                        <td class="">
-                                            <?= $data->location; ?>
-                                        </td>
-                                    </tr>
-                                <?php } }?>
+                                        <tr class="align-middle">
+                                            <td class="text-center fw-bold"><?= $no+1; ?></td>
+                                            <td>
+                                                <a href="<?= base_url('upload/presence/' . $data->created_by . '/' . $data->file) ?>" class="d-block overlay" data-fslightbox="lightbox-basic">
+                                                    <img src="<?= base_url('upload/presence/'.$data->created_by . '/' . $data->file) ?>" alt="" class="w-50px">
+                                                </a>
+                                            </td>
+                                            <td><?= $data->name; ?></td>
+                                            <td class="text-center">
+                                                <?php if($data->remark == 'Check In') {?>    
+                                                    <span class="badge badge-light-success">Check In</span>
+                                                <?php } else if ($data->remark == 'Check Out') {?>
+                                                    <span class="badge badge-light-danger">Check Out</span>
+                                                <?php } else if($data->remark == 'Permit') {?>
+                                                    <span class="badge badge-light-primary">Permit</span>
+                                                <?php }?>
+                                            </td>
+                                            <td><?= date('d F Y H:i', strtotime($data->presence_date)); ?></td>
+                                            <td class="">
+                                                <?= $data->location; ?>
+                                            </td>
+                                        </tr>
+                                    <?php } } else { ?>
+                                        <tr class="align-middle">
+                                            <td class="text-center fw-bold" colspan="6">
+                                                <i class="fw-bold">No Data!</i>
+                                            </td>
+                                        </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>

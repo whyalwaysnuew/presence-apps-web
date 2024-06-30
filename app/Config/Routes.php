@@ -31,3 +31,7 @@ $routes->post('division/store', 'Division::store');
 $routes->get('division/edit', 'Division::edit');
 $routes->post('division/update', 'Division::update');
 $routes->get('division/delete', 'Division::delete');
+
+$routes->get('user', 'User::index');
+$routes->get('user/edit/(:segment)', 'User::edit/$1');
+$routes->get('user/delete', 'User::delete');
