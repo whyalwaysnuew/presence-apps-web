@@ -136,7 +136,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--begin::Input group=-->
                                         <div class="fv-row mb-8">
                                             <!--begin::Full Name-->
-                                            <input type="text" required placeholder="John Wick" name="fullname" id="fullname" autocomplete="off" class="form-control bg-transparent" />
+                                            <input type="text" required placeholder="Jerry Brilianto Akbar" name="fullname" id="fullname" autocomplete="off" class="form-control bg-transparent" />
                                             <!--end::Full Name-->
                                         </div>
                                         <!--end::Input group=-->
